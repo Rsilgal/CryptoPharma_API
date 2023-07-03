@@ -1,4 +1,4 @@
-{
+const ControllerContract = {
     "address": "0x9c59D33594bC1f6046d704246A6CF9B9D3EF24F5",
     "abi": [
         {
@@ -566,3 +566,5 @@
         }
     ]
 }
+
+export { ControllerContract }
