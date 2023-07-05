@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { buyPorduct, createProduct, getProduct, getProducts, sellProduct } from "../controllers/products";
+import { buyProduct, createProduct, getProduct, getProducts, sellProduct } from "../controllers/products.controller";
 
 const productsRouter = Router();
 
@@ -13,7 +13,7 @@ productsRouter.get("/:id", getProduct);
 productsRouter.post("/create", createProduct);
 
 // http://localhost:3001/api/product/buy/1
-productsRouter.post("/buy/:id", buyPorduct);
+productsRouter.post("/buy/:id", buyProduct);
 
 // http://localhost:3001/api/product/sell/1
 productsRouter.post("/sell/:id", sellProduct);
