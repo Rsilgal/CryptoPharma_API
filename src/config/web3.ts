@@ -1,7 +1,7 @@
 import {Web3} from "web3";
-import { controllerAddress, controllerABI } from "../abi/controllerContract";
-import { productABI, productAddress } from "../abi/productContract";
-import { prescriptionABI, prescriptionAddress } from "../abi/prescriptionContract";
+import { controllerAddress, controllerABI } from "./abi/controllerContract";
+import { productABI, productAddress } from "./abi/productContract";
+import { prescriptionABI, prescriptionAddress } from "./abi/prescriptionContract";
 
 const web3 = new Web3(`wss://sepolia.infura.io/ws/v3/${process.env.INFURA_KEY}`);
 

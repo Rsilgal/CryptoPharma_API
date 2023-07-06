@@ -1,4 +1,4 @@
-import { controllerAddress } from "../abi/controllerContract";
+import { controllerAddress } from "../config/abi/controllerContract";
 import { pool } from "../config/mysql"
 import { controllerContract } from "../config/web3";
 import Product from "../interfaces/DB/product.interface";
