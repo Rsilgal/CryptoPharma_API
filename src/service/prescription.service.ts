@@ -1,7 +1,7 @@
 import { RowDataPacket } from "mysql2";
-import { controllerAddress } from "../abi/contract";
+import { controllerAddress } from "../abi/controllerContract";
 import { pool } from "../config/mysql"
-import { contract } from "../config/web3";
+import { controllerContract } from "../config/web3";
 import { getPrescriptionInterface } from "../interfaces/SmartContracts/getPrescription.interface";
 import { createPrescriptionInterface } from "../interfaces/SmartContracts/createPrescription.interface";
 import { User } from "../interfaces/DB/user.interface";
@@ -13,14 +13,14 @@ const getAllPRescriptions = async () => {
 };
 
 const getOnePrescription = async (token: getPrescriptionInterface) => {
-    const result = await contract.methods.getPrescription(token.tokenIdentifier).call();
+    const result = await controllerContract.methods.getPrescription(token.tokenIdentifier).call();
     return result;
 };
 
 const createOnePrescription = async (_prescription: createPrescriptionInterface) => {
     const { userIdentifier, productIdentifier, amountToTakeFromProduct, coolDownToTakeOnHours, productQuantityToTake } = _prescription;
     const [rows_users] = await pool.query<User[]>("SELECT AddressWallet FROM users WHERE UsersId = ?", [userIdentifier]);
-    const result = await contract.methods.createPrescription(rows_users[0].userAddress, productIdentifier, amountToTakeFromProduct, coolDownToTakeOnHours, productQuantityToTake).send({ from: controllerAddress });
+    const result = await controllerContract.methods.createPrescription(rows_users[0].userAddress, productIdentifier, amountToTakeFromProduct, coolDownToTakeOnHours, productQuantityToTake).send({ from: controllerAddress });
     const [rows] = await pool.query("INSERT INTO prescrions () VALUES (?,?,?,?,?)", [productIdentifier, amountToTakeFromProduct, coolDownToTakeOnHours, productQuantityToTake, userIdentifier]);
     return rows
 };
